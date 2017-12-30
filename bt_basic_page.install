@@ -1,0 +1,6 @@
+<?php
+
+function bt_basic_page_install() {
+    //Add path alias
+    \Drupal::service('path.alias_storage')->save('/app/sitioweb/contenido/crear/bt_basic_page', '/app/sitioweb/contenido/crear/pagina_basica', 'es');
+}

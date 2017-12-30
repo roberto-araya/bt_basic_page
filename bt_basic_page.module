@@ -1,0 +1,18 @@
+<?php
+
+/**
+ * Implements hook_entity_insert()
+ * @param \Drupal\node\NodeInterface $entity
+ *
+ *
+ */
+function bt_basic_page_node_insert(\Drupal\node\NodeInterface $entity) {
+    // Convert to lowercase, trim spaces, replace spaces with underscore and then truncate to 60 chars.
+    $pathTitle = substr(str_replace(" ","-",trim(strtolower($entity->label()))),0,60);
+    $author = $entity->getRevisionAuthor()->getUsername();
+
+    if ($entity->bundle() == 'bt_basic_page') {
+        \Drupal::service('path.alias_storage')->save("/node/" . $entity->id() . '/edit', "/" . $pathTitle . '/edit', "en");
+        \Drupal::service('path.alias_storage')->save("/node/" . $entity->id() . '/delete', "/" . $pathTitle . '/delete', "en");
+    }
+}

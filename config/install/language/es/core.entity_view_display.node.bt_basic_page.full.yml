@@ -1,0 +1,10 @@
+third_party_settings:
+  panelizer:
+    displays:
+      basic_page_default:
+        blocks:
+          42a68c74-a740-4b56-a708-c106ac84cf24:
+            label: 'Añadir imagen de portada'
+          5f5a75ca-4178-4e3b-8da8-1580e7c45b8d:
+            label: Párrafos
+        label: 'Default Página Básica'

@@ -1,0 +1,27 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_bt_paragraphs
+    - node.type.bt_basic_page
+  module:
+    - entity_reference_revisions
+id: node.bt_basic_page.field_bt_paragraphs
+field_name: field_bt_paragraphs
+entity_type: node
+bundle: bt_basic_page
+label: Paragraphs
+description: 'Select the type of paragraph you want to add to your content.'
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles: null
+    target_bundles_drag_drop:
+      bt_texto_imagen:
+        weight: 2
+        enabled: false
+field_type: entity_reference_revisions

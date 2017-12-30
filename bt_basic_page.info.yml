@@ -1,0 +1,19 @@
+name: 'Btester Basic Page'
+description: 'Btester Basic Page'
+type: module
+core: 8.x
+dependencies:
+  - bt_media
+  - content_translation
+  - field
+  - image
+  - language
+  - menu_ui
+  - node
+  - path
+  - rdf
+  - text
+  - user
+  - content_moderation
+version: 8.x-1.0
+package: Btester

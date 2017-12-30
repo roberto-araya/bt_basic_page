@@ -1,0 +1,19 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.bt_basic_page
+  module:
+    - node
+id: node.bt_basic_page
+targetEntityType: node
+bundle: bt_basic_page
+types:
+  - 'schema:WebPage'
+fieldMappings:
+  title:
+    properties:
+      - 'schema:name'
+  field_bt_body:
+    properties:
+      - 'schema:mainContentOfPage'
