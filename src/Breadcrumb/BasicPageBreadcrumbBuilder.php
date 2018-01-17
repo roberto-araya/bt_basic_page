@@ -4,60 +4,60 @@ namespace Drupal\bt_basic_page\Breadcrumb;
 
 use Drupal\Core\Breadcrumb\Breadcrumb;
 use Drupal\Core\Breadcrumb\BreadcrumbBuilderInterface;
-use Drupal\Core\Session\AccountProxy;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\Core\Link;
-use Drupal\Core\Session\AccountInterface;
-use Drupal\user\Entity\User;
 
 class BasicPageBreadcrumbBuilder implements BreadcrumbBuilderInterface {
 
-    /**
-     * @var AccountInterface
-     */
-    protected $account;
+  /**
+   * The site name.
+   *
+   * @var siteName
+   */
+  protected $siteName;
 
-    /**
-     * The routes that will change their breadcrumbs.
-     */
-    private $routes = array(
-        'page_manager.page_view_bt_create_basic_page',
-    );
+  /**
+   * The routes that will change their breadcrumbs.
+   *
+   * @var routes
+   */
+  private $routes = array(
+    'page_manager.page_view_bt_create_basic_page',
+  );
 
-    /**
-     * Class constructor.
-     */
-    public function __construct(AccountProxy $current_user) {
-        $user_id = $current_user->id();
-        $user_account = User::load($user_id);
-        $this->account = $user_account;
+  /**
+   * Class constructor.
+   */
+  public function __construct($configFactory) {
+    $this->siteName = $configFactory->get('system.site')->get('name');
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function applies(RouteMatchInterface $attributes) {
+    $match = $this->routes;
+    if (in_array($attributes->getRouteName(), $match)) {
+      return TRUE;
     }
-
-    /**
-    * {@inheritdoc}
-    */
-    public function applies(RouteMatchInterface $attributes) {
-        $match = $this->routes;
-        if (in_array($attributes->getRouteName(),$match)) {
-            return TRUE;
-        }else{
-            return FALSE;
-        }
+    else {
+      return FALSE;
     }
+  }
 
-    /**
-    * {@inheritdoc}
-    */
-    public function build(RouteMatchInterface $route_match) {
-        $breadcrumb = new Breadcrumb();
-        $breadcrumb->addCacheContexts(["url"]);
-        $site_name = \Drupal::config('system.site')->get('name');
-        $breadcrumb->addLink(Link::createFromRoute($site_name, 'page_manager.page_view_app_app-panels_variant-0'));
-        $breadcrumb->addLink(Link::createFromRoute('Website', 'page_manager.page_view_app_website_app_website-panels_variant-0'));
-        $breadcrumb->addLink(Link::createFromRoute('Content', 'page_manager.page_view_app_website_content_app_website_content-panels_variant-0'));
-        $breadcrumb->addLink(Link::createFromRoute('Create Content', 'node.add_page'));
+  /**
+   * {@inheritdoc}
+   */
+  public function build(RouteMatchInterface $route_match) {
+    $breadcrumb = new Breadcrumb();
+    $breadcrumb->addCacheContexts(["url"]);
 
-        return $breadcrumb;
-    }
+    $breadcrumb->addLink(Link::createFromRoute($this->siteName, 'page_manager.page_view_app_app-panels_variant-0'));
+    $breadcrumb->addLink(Link::createFromRoute('Website', 'page_manager.page_view_app_website_app_website-panels_variant-0'));
+    $breadcrumb->addLink(Link::createFromRoute('Content', 'page_manager.page_view_app_website_content_app_website_content-panels_variant-0'));
+    $breadcrumb->addLink(Link::createFromRoute('Create Content', 'node.add_page'));
+
+    return $breadcrumb;
+  }
+
 }

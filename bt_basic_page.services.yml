@@ -6,6 +6,6 @@ services:
       - {name: config.factory.override, priority: 25}
   bt_basic_page.breadcrumbs:
     class: Drupal\bt_basic_page\Breadcrumb\BasicPageBreadcrumbBuilder
-    arguments: ['@current_user']
+    arguments: ['@config.factory']
     tags:
       - { name: breadcrumb_builder, priority: 1010 }
