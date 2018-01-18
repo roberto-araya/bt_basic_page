@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * @file
+ * The module file of bt_basic_page.
+ */
+
 use Drupal\node\NodeInterface;
 
 /**

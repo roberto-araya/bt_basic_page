@@ -7,19 +7,24 @@ use Drupal\Core\Breadcrumb\BreadcrumbBuilderInterface;
 use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\Core\Link;
 
+/**
+ * Class BasicPageBreadcrumbBuilder.
+ *
+ * @package Drupal\bt_basic_page\Breadcrumb
+ */
 class BasicPageBreadcrumbBuilder implements BreadcrumbBuilderInterface {
 
   /**
    * The site name.
    *
-   * @var siteName
+   * @var string
    */
   protected $siteName;
 
   /**
    * The routes that will change their breadcrumbs.
    *
-   * @var routes
+   * @var array
    */
   private $routes = array(
     'page_manager.page_view_bt_create_basic_page',

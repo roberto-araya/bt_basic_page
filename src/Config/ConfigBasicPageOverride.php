@@ -18,6 +18,9 @@ class ConfigBasicPageOverride implements ConfigFactoryOverrideInterface {
   private $viewsAdminContent;
   private $viewsFullAdminContent;
 
+  /**
+   * {@inheritdoc}
+   */
   public function __construct(ConfigFactory $configFactory) {
 
     $this->createContent = $configFactory->get('user.role.bt_create_content');
@@ -28,6 +31,9 @@ class ConfigBasicPageOverride implements ConfigFactoryOverrideInterface {
     $this->viewsFullAdminContent = $configFactory->get('views.view.bt_full_admin_content');
   }
 
+  /**
+   * {@inheritdoc}
+   */
   public function loadOverrides($names) {
     $overrides = array();
 

@@ -1,5 +1,13 @@
 <?php
 
+/**
+ * @file
+ * Install file of bt_basic_page module.
+ */
+
+/**
+ * Implements hook_install().
+ */
 function bt_basic_page_install() {
   // Add path alias.
   \Drupal::service('path.alias_storage')->save('/app/website/content/create/bt_basic_page', '/app/website/content/create/basic_page', 'en');
