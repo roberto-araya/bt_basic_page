@@ -11,4 +11,33 @@
 function bt_basic_page_install() {
   // Add path alias.
   \Drupal::service('path.alias_storage')->save('/app/website/content/create/bt_basic_page', '/app/website/content/create/basic_page', 'en');
+
+  // Add permissions to the roles.
+  $roles = [
+    'user.role.bt_create_content' => [
+      'create bt_basic_page content',
+      'edit own bt_basic_page content',
+      'revert bt_basic_page revisions',
+      'view bt_basic_page revisions',
+    ],
+    'user.role.bt_delete_content' => [
+      'delete any bt_basic_page content',
+      'delete bt_basic_page revisions',
+    ],
+    'user.role.bt_delete_own_content' => [
+      'delete own bt_basic_page content',
+    ],
+    'user.role.bt_edit_publish_content' => [
+      'edit any bt_basic_page content',
+    ],
+  ];
+
+  foreach ($roles as $role => $new_permissions) {
+    $permissions = \Drupal::service('config.factory')->get($role)->get('permissions');
+
+    $config = \Drupal::service('config.factory')->getEditable($role);
+    $config->set('permissions', array_merge($permissions, $new_permissions));
+    $config->save();
+  }
+
 }
