@@ -1,7 +1,0 @@
-langcode: en
-status: true
-dependencies: {  }
-id: bt_basic_page
-label: 'Basic Page'
-revision: 0
-description: 'Display basic page.'
