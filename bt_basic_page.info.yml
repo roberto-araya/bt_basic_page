@@ -1,8 +1,7 @@
 name: 'Btester Basic Page'
 description: 'Btester Basic Page'
 type: module
-core: 8.x
-core_version_requirement: ^8
+core_version_requirement: ^8.8
 dependencies:
   - bt_image:bt_image
   - drupal:content_moderation
