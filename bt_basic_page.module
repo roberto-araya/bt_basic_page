@@ -6,6 +6,7 @@
  */
 
 use Drupal\node\NodeInterface;
+use Drupal\path_alias\Entity\PathAlias;
 
 /**
  * Implements hook_node_insert().
@@ -16,9 +17,24 @@ function bt_basic_page_node_insert(NodeInterface $entity) {
   $pathTitle = substr(str_replace(" ", "-", trim(strtolower($entity->label()))), 0, 60);
 
   if ($entity->bundle() == 'bt_basic_page') {
-    \Drupal::service('path.alias_storage')->save("/node/" . $entity->id() . '/edit', "/" . $pathTitle . '/edit', "en");
-    \Drupal::service('path.alias_storage')->save("/node/" . $entity->id() . '/delete', "/" . $pathTitle . '/delete', "en");
-    \Drupal::service('path.alias_storage')->save("/node/" . $entity->id() . '/latest', "/" . $pathTitle . '/latest', "en");
+    $path_alias = PathAlias::create([
+      'path' => '/node/' . $entity->id() . '/edit',
+      'alias' => '/' . $pathTitle . '/edit',
+    ]);
+    $path_alias->save();
+
+    $path_alias = PathAlias::create([
+      'path' => '/node/' . $entity->id() . '/delete',
+      'alias' => '/' . $pathTitle . '/delete',
+    ]);
+    $path_alias->save();
+
+    $path_alias = PathAlias::create([
+      'path' => '/node/' . $entity->id() . '/latest',
+      'alias' => '/' . $pathTitle . '/latest',
+    ]);
+    $path_alias->save();
+
   }
 
 }

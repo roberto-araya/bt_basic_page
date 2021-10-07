@@ -5,12 +5,18 @@
  * Install file of bt_basic_page module.
  */
 
+use Drupal\path_alias\Entity\PathAlias;
+
 /**
  * Implements hook_install().
  */
 function bt_basic_page_install() {
   // Add path alias.
-  \Drupal::service('path.alias_storage')->save('/app/website/content/create/bt_basic_page', '/app/website/content/create/basic_page', 'en');
+  $path_alias = PathAlias::create([
+    'path' => '/app/website/content/create/bt_basic_page',
+    'alias' => '/app/website/content/create/basic_page',
+  ]);
+  $path_alias->save();
 
   // Add permissions to the roles.
   $roles = [

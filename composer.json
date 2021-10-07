@@ -18,7 +18,7 @@
     "source": "http://git.drupal.org/project/bt_basic_page.git"
   },
   "require": {
-    "drupal/bt_cms": "^1.0-alpha1",
-    "drupal/bt_image": "^1.0-alpha1"
+    "drupal/bt_cms": "^2.0.0-alpha1",
+    "drupal/bt_image": "^2.0.0-alpha1"
   }
 }
