@@ -19,6 +19,7 @@
   },
   "require": {
     "drupal/bt_cms": "^2.0.0-alpha1",
-    "drupal/bt_image": "^2.0.0-alpha1"
+    "drupal/bt_image": "^2.0.0-alpha1",
+    "drupal/layout_library": "^1.0-beta2"
   }
 }
