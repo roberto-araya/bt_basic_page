@@ -20,7 +20,8 @@
   "require": {
     "drupal/bt_cms": "^2.0.0-alpha1",
     "drupal/bt_image": "^2.0.0-alpha1",
-    "drupal/field_css": "^2.0@RC"
+    "drupal/field_css": "^2.0@RC",
+    "drupal/layout_library": "^1.0-beta2"
   },
   "extra": {
     "patches": {

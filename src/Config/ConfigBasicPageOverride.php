@@ -40,18 +40,6 @@ class ConfigBasicPageOverride implements ConfigFactoryOverrideInterface {
   public function loadOverrides($names) {
     $overrides = [];
 
-    $basic_page_values = [
-      'bt_basic_page' => 'bt_basic_page',
-    ];
-
-    // Add article filter values to views.view.bt_content view.
-    if (in_array('views.view.bt_content', $names)) {
-      $views = $this->viewsAdminContent;
-      $filter_values = $views->get('display.default.display_options.filters.type.value');
-      $values = array_merge($filter_values, $basic_page_values);
-      $overrides['views.view.bt_content']['display']['default']['display_options']['filters']['type']['value'] = $values;
-    }
-
     if (in_array('workflows.workflow.editorial', $names)) {
       $workflow = $this->workflow;
       $entity_types_values = $workflow->get('type_settings.entity_types');
@@ -63,9 +51,7 @@ class ConfigBasicPageOverride implements ConfigFactoryOverrideInterface {
         $values = ['bt_basic_page'];
         $overrides['workflows.workflow.editorial']['type_settings']['entity_types']['node'] = $values;
       }
-
     }
-
     return $overrides;
   }
 

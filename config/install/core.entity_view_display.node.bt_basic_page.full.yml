@@ -1,0 +1,89 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.base_field_override.node.bt_basic_page.title
+    - core.entity_view_mode.node.full
+    - field.field.node.bt_basic_page.layout_builder__layout
+    - node.type.bt_basic_page
+  module:
+    - layout_builder
+    - layout_discovery
+    - layout_library
+    - user
+third_party_settings:
+  layout_builder:
+    allow_custom: true
+    enabled: true
+    sections:
+      -
+        layout_id: layout_onecol
+        layout_settings:
+          label: ''
+        components:
+          341c2ad6-6731-4e95-99d2-196e7a3d18c3:
+            uuid: 341c2ad6-6731-4e95-99d2-196e7a3d18c3
+            region: content
+            configuration:
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              id: 'extra_field_block:node:bt_basic_page:content_moderation_control'
+            additional: {  }
+            weight: 0
+          25488d72-f51a-4086-8954-af52df18ab9c:
+            uuid: 25488d72-f51a-4086-8954-af52df18ab9c
+            region: content
+            configuration:
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              id: 'field_block:node:bt_basic_page:title'
+              formatter:
+                label: hidden
+                type: string
+                settings:
+                  link_to_entity: false
+                third_party_settings: {  }
+            additional: {  }
+            weight: 1
+          3833cfa1-af42-4108-b577-5a11cee6f0ef:
+            uuid: 3833cfa1-af42-4108-b577-5a11cee6f0ef
+            region: content
+            configuration:
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              id: 'extra_field_block:node:bt_basic_page:links'
+            additional: {  }
+            weight: 2
+        third_party_settings: {  }
+  layout_library:
+    enable: false
+id: node.bt_basic_page.full
+targetEntityType: node
+bundle: bt_basic_page
+mode: full
+content:
+  content_moderation_control:
+    weight: -20
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  title:
+    label: hidden
+    type: string
+    weight: -5
+    region: content
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+hidden:
+  langcode: true
+  layout_builder__layout: true
+

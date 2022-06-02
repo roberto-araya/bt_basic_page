@@ -17,4 +17,5 @@ dependencies:
   - drupal:text
   - drupal:user
   - drupal:layout_builder
+  - layout_library:layout_library
 package: Btester
