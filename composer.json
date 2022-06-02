@@ -19,6 +19,14 @@
   },
   "require": {
     "drupal/bt_cms": "^2.0.0-alpha1",
-    "drupal/bt_image": "^2.0.0-alpha1"
+    "drupal/bt_image": "^2.0.0-alpha1",
+    "drupal/field_css": "^2.0@RC"
+  },
+  "extra": {
+    "patches": {
+      "drupal/field_css": {
+        "Notice: Undefined index": "https://www.drupal.org/files/issues/2022-05-14/field_css-adds-additional-validation-3280478-2.patch"
+      }
+    }
   }
 }
