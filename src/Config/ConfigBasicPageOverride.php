@@ -13,17 +13,25 @@ use Drupal\Core\Config\StorageInterface;
 class ConfigBasicPageOverride implements ConfigFactoryOverrideInterface {
 
   /**
-   * Config Factory object.
+   * The Config Factory.
    *
-   * @var configFactory
+   * @var \Drupal\Core\Config\ConfigFactoryInterface
    */
-  private $configFactory;
+  protected $configFactory;
+
+  /**
+   * The settings of workflow configurations.
+   *
+   * @var \Drupal\Core\Config\Config
+   */
+  protected $workflow;
 
   /**
    * {@inheritdoc}
    */
   public function __construct(ConfigFactory $configFactory) {
     $this->configFactory = $configFactory;
+    $this->workflow = $this->configFactory->get('workflows.workflow.editorial');
   }
 
   /**
@@ -33,8 +41,7 @@ class ConfigBasicPageOverride implements ConfigFactoryOverrideInterface {
     $overrides = [];
 
     if (in_array('workflows.workflow.editorial', $names)) {
-      $workflow = $this->configFactory->get('workflows.workflow.editorial');
-      $entity_types_values = $workflow->get('type_settings.entity_types');
+      $entity_types_values = $this->workflow->get('type_settings.entity_types');
       if (is_array($entity_types_values) && array_key_exists('node', $entity_types_values)) {
         $entity_types_values['node'][] = 'bt_basic_page';
         $overrides['workflows.workflow.editorial']['type_settings']['entity_types']['node'] = $entity_types_values['node'];
