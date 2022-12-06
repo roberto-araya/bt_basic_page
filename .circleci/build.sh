@@ -140,12 +140,13 @@ mkdir -p "${BUILD_DIR}/web/modules/${MODULE}"
 ln -s "$(pwd)"/* "${BUILD_DIR}/web/modules/${MODULE}" && rm "${BUILD_DIR}/web/modules/${MODULE}/${BUILD_DIR}"
 
 echo "  > Enabling module ${MODULE}."
-"${BUILD_DIR}/vendor/bin/drush" -r "${BUILD_DIR}/web" pm:enable bt_core -y
-"${BUILD_DIR}/vendor/bin/drush" -r "${BUILD_DIR}/web" pm:enable bt_cms -y
-"${BUILD_DIR}/vendor/bin/drush" -r "${BUILD_DIR}/web" pm:enable bt_image -y
-"${BUILD_DIR}/vendor/bin/drush" -r "${BUILD_DIR}/web" pm:enable field_css -y
-"${BUILD_DIR}/vendor/bin/drush" -r "${BUILD_DIR}/web" pm:enable "${MODULE}" -y
-"${BUILD_DIR}/vendor/bin/drush" -r "${BUILD_DIR}/web" cr
+php -d memory_limit=384M "${BUILD_DIR}/vendor/bin/drush" -r "${BUILD_DIR}/web" pm:enable bt_core -y
+php -d memory_limit=384M "${BUILD_DIR}/vendor/bin/drush" -r "${BUILD_DIR}/web" pm:enable bt_cms -y
+php -d memory_limit=384M "${BUILD_DIR}/vendor/bin/drush" -r "${BUILD_DIR}/web" pm:enable bt_media -y
+php -d memory_limit=384M "${BUILD_DIR}/vendor/bin/drush" -r "${BUILD_DIR}/web" pm:enable bt_image -y
+php -d memory_limit=384M "${BUILD_DIR}/vendor/bin/drush" -r "${BUILD_DIR}/web" pm:enable field_css -y
+php -d memory_limit=384M "${BUILD_DIR}/vendor/bin/drush" -r "${BUILD_DIR}/web" pm:enable "${MODULE}" -y
+php -d memory_limit=384M "${BUILD_DIR}/vendor/bin/drush" -r "${BUILD_DIR}/web" cr
 
 echo "  > Enabling suggested modules, if any."
 drupal_suggests=$(cat composer.json | jq -r 'select(.suggest != null) | .suggest | keys[]' | sed "s/drupal\///" | cut -f1 -d":")
