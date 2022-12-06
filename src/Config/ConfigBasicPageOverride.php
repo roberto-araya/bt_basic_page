@@ -5,6 +5,7 @@ namespace Drupal\bt_basic_page\Config;
 use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Config\ConfigFactoryOverrideInterface;
 use Drupal\Core\Config\ConfigFactory;
+use Drupal\Core\Config\StorageInterface;
 
 /**
  * Example configuration override.
@@ -12,26 +13,17 @@ use Drupal\Core\Config\ConfigFactory;
 class ConfigBasicPageOverride implements ConfigFactoryOverrideInterface {
 
   /**
-   * View configuration object of bt_content.
+   * Config Factory object.
    *
-   * @var viewsAdminContent
+   * @var configFactory
    */
-  private $viewsAdminContent;
-
-  /**
-   * Editorial workflow configuration object.
-   *
-   * @var workflow
-   */
-  private $workflow;
+  private $configFactory;
 
   /**
    * {@inheritdoc}
    */
   public function __construct(ConfigFactory $configFactory) {
-
-    $this->viewsAdminContent = $configFactory->get('views.view.bt_content');
-    $this->workflow = $configFactory->get('workflows.workflow.editorial');
+    $this->configFactory = $configFactory;
   }
 
   /**
@@ -41,7 +33,7 @@ class ConfigBasicPageOverride implements ConfigFactoryOverrideInterface {
     $overrides = [];
 
     if (in_array('workflows.workflow.editorial', $names)) {
-      $workflow = $this->workflow;
+      $workflow = $this->configFactory->get('workflows.workflow.editorial');
       $entity_types_values = $workflow->get('type_settings.entity_types');
       if (is_array($entity_types_values) && array_key_exists('node', $entity_types_values)) {
         $entity_types_values['node'][] = 'bt_basic_page';
