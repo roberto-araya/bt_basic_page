@@ -140,6 +140,10 @@ mkdir -p "${BUILD_DIR}/web/modules/${MODULE}"
 ln -s "$(pwd)"/* "${BUILD_DIR}/web/modules/${MODULE}" && rm "${BUILD_DIR}/web/modules/${MODULE}/${BUILD_DIR}"
 
 echo "  > Enabling module ${MODULE}."
+"${BUILD_DIR}/vendor/bin/drush" -r "${BUILD_DIR}/web" pm:enable bt_core -y
+"${BUILD_DIR}/vendor/bin/drush" -r "${BUILD_DIR}/web" pm:enable bt_cms -y
+"${BUILD_DIR}/vendor/bin/drush" -r "${BUILD_DIR}/web" pm:enable bt_image -y
+"${BUILD_DIR}/vendor/bin/drush" -r "${BUILD_DIR}/web" pm:enable field_css -y
 "${BUILD_DIR}/vendor/bin/drush" -r "${BUILD_DIR}/web" pm:enable "${MODULE}" -y
 "${BUILD_DIR}/vendor/bin/drush" -r "${BUILD_DIR}/web" cr
 
