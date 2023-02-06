@@ -139,7 +139,7 @@ echo "  > Installing Drupal into SQLite database ${DB_FILE}."
 echo "  > Symlinking module code."
 rm -rf "${BUILD_DIR}/web/modules/${MODULE}"/* > /dev/null
 mkdir -p "${BUILD_DIR}/web/modules/${MODULE}"
-ln -s "$(pwd)"/* "${BUILD_DIR}/web/modules/${MODULE}" && rm "${BUILD_DIR}/web/modules/${MODULE}/${BUILD_DIR}"
+ln -s "$(pwd)"/* "${BUILD_DIR}/web/modules/${MODULE}" && rm -Rf "${BUILD_DIR}/web/modules/${MODULE}/${BUILD_DIR}"
 
 echo "  > Enabling module ${MODULE}."
 php -d memory_limit=384M "${BUILD_DIR}/vendor/bin/drush" -r "${BUILD_DIR}/web" pm:enable bt_core -y
