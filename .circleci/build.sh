@@ -76,7 +76,7 @@ if [ -n "${DRUPAL_VERSION}" ] && [ -n "${DRUPAL_PROJECT_SHA}" ]; then
   echo "  > Initialising Drupal site from the scaffold commit ${DRUPAL_PROJECT_SHA}."
 
   # Clone Drupal core at the specific commit SHA.
-  git clone -n https://github.com/drupal-composer/drupal-project.git "${BUILD_DIR}"
+  git clone -n https://github.com/roberto-araya/custom-recommended-project.git "${BUILD_DIR}"
   git --git-dir="${BUILD_DIR}/.git" --work-tree="${BUILD_DIR}" checkout "${DRUPAL_PROJECT_SHA}"
   rm -rf "${BUILD_DIR}/.git" > /dev/null
 
@@ -112,7 +112,9 @@ php -d memory_limit=-1 "$(command -v composer)" --working-dir="${BUILD_DIR}" req
   dealerdirect/phpcodesniffer-composer-installer \
   phpspec/prophecy-phpunit:^2 \
   mglaman/drupal-check \
-  palantirnet/drupal-rector
+  palantirnet/drupal-rector \
+  drupal/coder \
+  symfony/phpunit-bridge
 cp "${BUILD_DIR}/vendor/palantirnet/drupal-rector/rector.php" "${BUILD_DIR}/."
 # Fix rector config from https://www.drupal.org/files/issues/2022-08-02/3269329-14.patch
 curl https://www.drupal.org/files/issues/2022-08-02/3269329-14.patch | patch -l "${BUILD_DIR}/rector.php" || true
