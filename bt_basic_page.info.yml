@@ -1,7 +1,7 @@
 name: 'Btester Basic Page'
 description: 'Btester Basic Page'
 type: module
-core_version_requirement: ^9.2
+core_version_requirement: ~9.4.0
 dependencies:
   - bt_image:bt_image
   - field_css:field_css

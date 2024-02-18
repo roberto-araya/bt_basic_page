@@ -18,8 +18,9 @@
     "source": "http://git.drupal.org/project/bt_basic_page.git"
   },
   "require": {
-    "drupal/bt_cms": "^2.0.0-alpha",
-    "drupal/bt_image": "^2.0.0-alpha",
+    "drupal/core": "~9.4.0",
+    "drupal/bt_cms": "~2.0.0",
+    "drupal/bt_image": "~2.0.0",
     "drupal/field_css": "^2.0@RC",
     "drupal/layout_library": "^1.0-beta2"
   }
